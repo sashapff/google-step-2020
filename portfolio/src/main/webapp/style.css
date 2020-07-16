@@ -1,9 +1,36 @@
+:root {
+    --background-color: rgb(235, 235, 250);
+    --link-color: rgb(100, 100, 110);
+    --text-color: rgb(60, 60, 80);
+    --button-color: rgb(220, 220, 235);
+    --border-color: rgb(80, 80, 100);
+}
+
+html {
+    font-family: Georgia, Helvetica, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: 30%;
 }
 
-#greeting-container {
+#fact-container {
+  font: bold;
   margin-top: 20px;
+}
+
+a {
+  color: var(--link-color);
+}
+
+button {
+  color: var(--link-color);
+  background-color: var(--button-color);
+  font-size: 110%;
+  border-radius: 10px;
+  border: 2px solid var(--border-color);
 }

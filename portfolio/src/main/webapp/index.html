@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <div id="content">
-      <h1>Alexandra Ivanova</h1>
-      <img src="images/me.jpg" alt="My photo" width="500" height="600">
-      <h3>My programming experience</h3>
-      <p>I'm a second-year student from Saint-Petersburg, Russia. There is my projects:</p>
-      <ul>
-        <li>Some mini games in one Android App. <a href="https://play.google.com/store/apps/details?id=ru.miniteamsminigames.minigames">Click to download.</a></li>
-        <li>Vector with small-object and copy-on-write optimizations. <a href="https://github.com/sashapff/vector">Click to see code.</a></li>
-      </ul>  
-      <a href="https://github.com/sashapff">It's my Github profile.</a>
-      <h3>Facts about me</h3>
-      <button onclick="addRandomFact()">Get a random fact</button>
-      <div id="fact-container"></div>
-    </div>
-  </body>
+
+<head>
+	<meta charset="UTF-8">
+	<title>My Portfolio</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js"></script>
+</head>
+
+<body>
+    <h1>Alexandra Ivanova</h1>
+	<div id="row">
+		<div id="content">
+			<img src="images/me.jpg" alt="My photo" id="my-photo">
+		</div>
+		<div id="content">
+				<h3>My programming experience</h3>
+				<p>I'm a second-year student from Saint Petersburg, Russia. There is my projects:</p>
+				<ul>
+					<li>Some mini games in one Android App. <a
+							href="https://play.google.com/store/apps/details?id=ru.miniteamsminigames.minigames">Click
+							to
+							download.</a></li>
+					<li>Vector with small-object and copy-on-write optimizations. <a
+							href="https://github.com/sashapff/vector">Click to see code.</a></li>
+				</ul>
+				<a href="https://github.com/sashapff">It's my Github profile.</a>
+				<h3>Facts about me</h3>
+				<button onclick="addRandomFact()">Get a random fact</button>
+				<div id="fact-container"></div>
+		</div>
+	</div>
+</body>
+
 </html>

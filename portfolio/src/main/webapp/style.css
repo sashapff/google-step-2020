@@ -13,14 +13,30 @@ html {
 }
 
 #content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
+  margin-right: 2%;
+  width: 48%;
+  float: left;
 }
+
+#row {
+  /* column-rule-style: outset; */
+  height: 100%;
+}
+
+/* #row:after {
+  content: "";
+  display: table;
+  clear: both;
+} */
 
 #fact-container {
   font: bold;
   margin-top: 20px;
+}
+
+#my-photo {
+  width: 100%;  
+  /* height: auto; */
 }
 
 a {

@@ -12,3 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * Fetches a greeting from the server and adds it to the DOM.
+ */
+function getGreeting() {
+  fetch('/data').then(response => response.text()).then((greeting) => {
+    document.getElementById('greeting-container').innerText = greeting;
+  });
+}

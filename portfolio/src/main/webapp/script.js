@@ -17,7 +17,6 @@ function getMessages() {
   fetch('/data').then(response => response.json()).then((messages) => {
     // messages is an object, not a string, so we have to
     // reference its fields to create HTML content
-
     const messagesElement = document.getElementById('messages-container');
     messagesElement.innerHTML = '';
     messages.forEach(message => {

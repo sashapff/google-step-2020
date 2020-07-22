@@ -24,25 +24,25 @@ import com.google.gson.Gson;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 /** Servlet that returns some example content. */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  private final ArrayList<String> messages = new ArrayList<>();
   private final Gson gson = new Gson();
-
-  public void init() {
-    messages.add("Hi! I'm Sasha.");
-  }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String message = request.getParameter("message");
+    final String message = request.getParameter("message");
+    final long timestamp = System.currentTimeMillis();
 
-    Entity messageEntity = new Entity("Message");
+    final Entity messageEntity = new Entity("Message");
     messageEntity.setProperty("message", message);
+    messageEntity.setProperty("timestamp", timestamp);
 
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(messageEntity);
 
     response.sendRedirect("/index.html");
@@ -50,6 +50,17 @@ public class DataServlet extends HttpServlet {
     
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    final Query query = new Query("Message").addSort("timestamp", SortDirection.DESCENDING);
+
+    final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    final PreparedQuery results = datastore.prepare(query);
+
+    ArrayList<String> messages = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      String message = (String) entity.getProperty("message");
+      messages.add(message);
+    }
+
     response.setContentType("text/html;");
     String json = gson.toJson(messages);
     response.getWriter().println(json);

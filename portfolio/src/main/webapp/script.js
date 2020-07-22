@@ -12,12 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Fetches messages from the servers and adds them to the DOM.
- */
+/** Fetches messages from the servers and adds them to the DOM. */
 function getMessages() {
-  console.log("Start getting messages");
-  
   fetch('/data').then(response => response.json()).then((messages) => {
     // messages is an object, not a string, so we have to
     // reference its fields to create HTML content
@@ -26,7 +22,6 @@ function getMessages() {
     messagesElement.innerHTML = '';
     messages.forEach(message => {
       messagesElement.appendChild(createListElement(message));
-      console.log("Add *" + message + "* to the page");
     });
   });
 }

@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Alexandra Ivanova</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
-</head>
-
-<body onload="getMessages()">
-  <h1>Alexandra Ivanova</h1>
-  <div>
+  <body onload="getMessages()">
+    <h1>Alexandra Ivanova</h1>
     <div>
-	  <img src="images/me.jpg" alt="My photo" id="my-photo">
-	</div>
-	<div id="content">
-	  <h3>My programming experience</h3>
-	  <p>I'm a second-year student from Saint Petersburg, Russia. There are my projects:</p>
-	  <ul>
-	    <li>Some mini-games in one Android App. 
-          <a href="https://play.google.com/store/apps/details?id=ru.miniteamsminigames.minigames">
-            Click to download.
-          </a>
-        </li>
-		<li>Vector with small-object and copy-on-write optimizations. 
-          <a href="https://github.com/sashapff/vector">Click to see code.</a>
-        </li>
-	  </ul>
-	  <h3>Facts about me</h3>
-      <p>These are some fun facts you need to know about me. I like to:</p>
-      <ul>
-        <li>watch videos on Tik-Tok</li>
-        <li>cook cupcakes</li>
-        <li>drive a car</li>
-        <li>listen to hip-hop music</li>
-      </ul>
-      <h3>Me on social networks</h3>
-      <p>Follow the links and subscribe:</p>
-      <ul>
-        <li><a href="https://github.com/sashapff">Github</a></li>
-        <li><a href="https://instagram.com/sasha.pff">Instagram</a></li>
-        <li><a href="https://t.me/sasha_pff">Telegram</a></li>
-        <li><a href="https://t.me/pff_thoughts">Telegram Channel</a> (just in Russian)</li>
-        <li><a href="https://music.apple.com/ru/playlist/pff-music/pl.u-qxylK2au2B8G0jr?l=en">Apple Music</a> (my playlist)</li>
-      </ul>
-      <div id="messages-container"></div>
-	</div>
-  </div>
-</body>
+      <div>
+	      <img src="images/me.jpg" alt="My photo" id="my-photo">
+  	  </div>
 
+	    <div id="content">
+	      <h3>My programming experience</h3>
+	      <p>I'm a second-year student from Saint Petersburg, Russia. There are my projects:</p>
+	      <ul>
+	        <li>Some mini-games in one Android App. 
+            <a href="https://play.google.com/store/apps/details?id=ru.miniteamsminigames.minigames">
+              Click to download.
+            </a>
+          </li>
+		      <li>Vector with small-object and copy-on-write optimizations. 
+            <a href="https://github.com/sashapff/vector">Click to see code.</a>
+          </li>
+	      </ul>
+
+	      <h3>Facts about me</h3>
+        <p>These are some fun facts you need to know about me. I like to:</p>
+        <ul>
+          <li>watch videos on Tik-Tok</li>
+          <li>cook cupcakes</li>
+          <li>drive a car</li>
+          <li>listen to hip-hop music</li>
+        </ul>
+
+        <h3>Me on social networks</h3>
+        <p>Follow the links and subscribe:</p>
+        <ul>
+          <li><a href="https://github.com/sashapff">Github</a></li>
+          <li><a href="https://instagram.com/sasha.pff">Instagram</a></li>
+          <li><a href="https://t.me/sasha_pff">Telegram</a></li>
+          <li><a href="https://t.me/pff_thoughts">Telegram Channel</a> (just in Russian)</li>
+          <li><a href="https://music.apple.com/ru/playlist/pff-music/pl.u-qxylK2au2B8G0jr?l=en">Apple Music</a> (my playlist)</li>
+        </ul>
+        
+        <form action="/data" method="POST">
+          <p>Send a message:</p>
+          <input type="string" name="message">
+          <input type="submit" />
+        </form>
+        <div id="messages-container"></div>
+	    </div>
+    </div>
+  </body>
 </html>

@@ -33,13 +33,26 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 public class DataServlet extends HttpServlet {
   private final Gson gson = new Gson();
 
+  /** Store message structure. */
+  private class Message {
+    final String sender;
+    final String content;
+
+    Message(String sender, String content) {
+      this.sender = sender;
+      this.content = content;
+    }
+  }
+
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    final String message = request.getParameter("message");
+    final String sender = request.getParameter("message-sender");
+    final String content = request.getParameter("message-content");
     final long timestamp = System.currentTimeMillis();
 
     final Entity messageEntity = new Entity("Message");
-    messageEntity.setProperty("message", message);
+    messageEntity.setProperty("sender", sender);
+    messageEntity.setProperty("content", content);
     messageEntity.setProperty("timestamp", timestamp);
 
     final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -55,10 +68,11 @@ public class DataServlet extends HttpServlet {
     final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     final PreparedQuery results = datastore.prepare(query);
 
-    ArrayList<String> messages = new ArrayList<>();
+    ArrayList<Message> messages = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-      String message = (String) entity.getProperty("message");
-      messages.add(message);
+      String sender = (String) entity.getProperty("sender");
+      String content = (String) entity.getProperty("content");
+      messages.add(new Message(sender, content));
     }
 
     response.setContentType("text/html;");

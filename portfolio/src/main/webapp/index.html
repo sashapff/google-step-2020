@@ -45,11 +45,12 @@
         <ul>
           <div id="messages-container"></div>
         </ul>
-        <h3>Send a message</h3>
-        <p>You can also leave a comment about me</>
+        <h3>Form to messages</h3>
+        <p>Leave a comment about me:</>
         <form action="/data" method="POST">
-          <input type="string" name="message" required>
-          <input type="submit"/>
+          <input type="text" name="message-sender" placeholder="Your name" required><br><br>
+          <input type="text" name="message-content" placeholder="Message" required><br><br>
+          <input type="submit" value="Send">
         </form>
       </div>
     </div>

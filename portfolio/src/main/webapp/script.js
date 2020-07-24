@@ -19,7 +19,8 @@ function getMessages() {
     // reference its fields to create HTML content
     const messagesElement = document.getElementById('messages-container');
     messagesElement.innerHTML = '';
-    messages.forEach((message) => messagesElement.appendChild(createListElement(message)));
+    console.log(messages);
+    messages.forEach((message) => messagesElement.appendChild(createListElement(message.sender + ": " + message.content)));
   });
 }
 

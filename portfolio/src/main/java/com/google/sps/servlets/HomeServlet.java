@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/** Servlet that returns links to login or logout and to the main page. */
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
 
@@ -33,8 +34,14 @@ public class HomeServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     UserService userService = UserServiceFactory.getUserService();
 
-    boolean isUserLoggedIn = userService.isUserLoggedIn();
-    out.println(isUserLoggedIn);
+    if (!userService.isUserLoggedIn()) {
+      String loginUrl = userService.createLoginURL("/home");
+      out.println("<p><a href=\"" + loginUrl + "\">Login</a></p>");
+    } else {
+      String logoutUrl = userService.createLogoutURL("/home");
+      out.println("<p><a href=\"" + logoutUrl + "\">Logout</a></p>");
+    }
+
+    out.println("<p><a href=\"/index.html\">Main page</a></p>");
   }
 }
-git checkout -b

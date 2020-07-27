@@ -15,16 +15,6 @@
 /** Starts all function to onload. */
 function start() {
   getMessages();
-  getStatusUserLoggedIn();
-}
-
-/** Get status of user login and adds to the DOM. */
-function getStatusUserLoggedIn() {
-  fetch('/home').then(response => response.json()).then((status) => {
-    const statusElement = document.getElementById('logged-in-status');
-    statusElement.innerHTML = '';
-    statusElement.appendChild(status);
-  })
 }
 
 /** Fetches messages from the servers and adds them to the DOM. */

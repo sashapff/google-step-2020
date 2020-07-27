@@ -28,7 +28,7 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
-/** Servlet that returns some example content. */
+/** Servlet that returns users messages content that they send. */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
   private final Gson gson = new Gson();
@@ -49,20 +49,33 @@ public class DataServlet extends HttpServlet {
     final String sender = request.getParameter("message-sender");
     final String content = request.getParameter("message-content");
     final long timestamp = System.currentTimeMillis();
-
-    final Entity messageEntity = new Entity("Message");
-    messageEntity.setProperty("sender", sender);
-    messageEntity.setProperty("content", content);
-    messageEntity.setProperty("timestamp", timestamp);
-
-    final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(messageEntity);
+    putMessage(sender, content, timestamp);
 
     response.sendRedirect("/index.html");
   }
     
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    final ArrayList<Message> messages = loadMessages();
+
+    response.setContentType("text/html;");
+    String json = gson.toJson(messages);
+    response.getWriter().println(json);
+  }
+
+  /** Create new message and put it to Datastore. */
+  private void putMessage(String sender, String content, long timestamp) {
+    Entity messageEntity = new Entity("Message");
+    messageEntity.setProperty("sender", sender);
+    messageEntity.setProperty("content", content);
+    messageEntity.setProperty("timestamp", timestamp);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(messageEntity);
+  }
+
+  /** Load messages from Datastore. */
+  private ArrayList<Message> loadMessages() {
     final Query query = new Query("Message").addSort("timestamp", SortDirection.DESCENDING);
 
     final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -74,10 +87,7 @@ public class DataServlet extends HttpServlet {
       String content = (String) entity.getProperty("content");
       messages.add(new Message(sender, content));
     }
-
-    response.setContentType("text/html;");
-    String json = gson.toJson(messages);
-    response.getWriter().println(json);
+    return messages;
   }
 
 }

@@ -12,6 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/** Starts all function to onload. */
+function start() {
+  getMessages();
+  getStatusUserLoggedIn();
+}
+
+/** Get status of user login and adds to the DOM. */
+function getStatusUserLoggedIn() {
+  fetch('/home').then(response => response.json()).then((status) => {
+    const statusElement = document.getElementById('logged-in-status');
+    statusElement.innerHTML = '';
+    statusElement.appendChild(status);
+  })
+}
+
 /** Fetches messages from the servers and adds them to the DOM. */
 function getMessages() {
   fetch('/data').then(response => response.json()).then((messages) => {
@@ -19,7 +34,6 @@ function getMessages() {
     // reference its fields to create HTML content
     const messagesElement = document.getElementById('messages-container');
     messagesElement.innerHTML = '';
-    console.log(messages);
     messages.forEach((message) => messagesElement.appendChild(createListElement(message.sender + ": " + message.content)));
   });
 }

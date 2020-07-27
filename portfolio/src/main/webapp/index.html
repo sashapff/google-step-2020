@@ -7,8 +7,9 @@
     <script src="script.js"></script>
     <link rel="icon" type="image/img" href="/images/me.jpg"/>
   </head>
-  <body onload="getMessages()">
+  <body onload="start()">
     <h1>Alexandra Ivanova</h1>
+    <h2><a href="/home">Log in | Log out</a></h2>
     <div>
       <div id="photo">
         <img src="images/me.jpg" alt="My photo" id="my-photo">
@@ -49,7 +50,7 @@
         <h3>Form to messages</h3>
         <p>Leave a comment about me:</>
         <form action="/data" method="POST">
-          <input type="text" name="message-sender" placeholder="Your name" required><br><br>
+          <input type="text" name="message-sender" placeholder="Your name or nick" required><br><br>
           <input type="text" name="message-content" placeholder="Message" required><br><br>
           <input type="submit" value="Send">
         </form>

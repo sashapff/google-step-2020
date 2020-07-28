@@ -22,7 +22,7 @@ function start() {
 
 /** Fetches messages from the servers and adds them to the DOM. */
 function getMessages() {
-  fetch('/data').then(response => response.json()).then((messages) => {
+  fetch('/messages-data').then(response => response.json()).then((messages) => {
     // messages is an object, not a string, so we have to
     // reference its fields to create HTML content
     const messagesElement = document.getElementById('messages-container');
@@ -41,20 +41,22 @@ function createListElement(text) {
 
 /** Creates a chart and adds it to the page. */
 function drawChart() {
-  const data = google.visualization.arrayToDataTable([
-    ['App', 'Minutes'],
-    ['Youtube', 40],
-    ['Tik-Tok', 20],
-    ['Instagram', 100]
-  ]);
+  fetch('/color-data').then(response => response.json()).then((colorVotes) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Color');
+    data.addColumn('number', 'Votes');
+    Object.keys(colorVotes).forEach((color) => {
+      data.addRow([color, colorVotes[color]]);
+    });
 
-  const options = {
-    'title': 'Screen Time',
-    'width':500,
-    'height':400
-  };
+    const options = {
+      'title': 'Eyes Colors',
+      'width':500,
+      'height':400
+    };
 
-  const chart = new google.visualization.ColumnChart(
-      document.getElementById('chart-container'));
-  chart.draw(data, options);
+    const chart = new google.visualization.PieChart(
+        document.getElementById('chart-container'));
+    chart.draw(data, options);
+  });
 }

@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
 /** Starts all function to onload. */
 function start() {
   getMessages();
@@ -34,4 +37,26 @@ function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
   return liElement;
+}
+
+/** Creates a chart and adds it to the page. */
+function drawChart() {
+  const data = new google.visualization.DataTable();
+  data.addColumn('string', 'App');
+  data.addColumn('number', 'Minutes');
+        data.addRows([
+          ['Youtube', 40],
+          ['Tik-Tok', 20],
+          ['Instagram', 100]
+        ]);
+
+  const options = {
+    'title': 'Screen Time',
+    'width':500,
+    'height':400
+  };
+
+  const chart = new google.visualization.PieChart(
+      document.getElementById('chart-container'));
+  chart.draw(data, options);
 }

@@ -48,6 +48,11 @@ public class DataServlet extends HttpServlet {
     }
   }
 
+  private final String SENDER_PROPERTY = "sender";
+  private final String CONTENT_PROPERTY = "content";
+  private final String EMAIL_PROPERTY = "email";
+  private final String TIMESTAMP_PROPERTY = "timestamp";
+
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
@@ -61,6 +66,18 @@ public class DataServlet extends HttpServlet {
 
     response.sendRedirect("/index.html");
   }
+
+  /** Create new message and put it to Datastore. */
+  private void putMessage(String sender, String content, String email, long timestamp) {
+    Entity messageEntity = new Entity("Message");
+    messageEntity.setProperty(SENDER_PROPERTY, sender);
+    messageEntity.setProperty(CONTENT_PROPERTY, content);
+    messageEntity.setProperty(EMAIL_PROPERTY, email);
+    messageEntity.setProperty(TIMESTAMP_PROPERTY, timestamp);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(messageEntity);
+  }
     
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -69,18 +86,6 @@ public class DataServlet extends HttpServlet {
     response.setContentType("text/html;");
     String json = gson.toJson(messages);
     response.getWriter().println(json);
-  }
-
-  /** Create new message and put it to Datastore. */
-  private void putMessage(String sender, String content, String email, long timestamp) {
-    Entity messageEntity = new Entity("Message");
-    messageEntity.setProperty("sender", sender);
-    messageEntity.setProperty("content", content);
-    messageEntity.setProperty("email", email);
-    messageEntity.setProperty("timestamp", timestamp);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(messageEntity);
   }
 
   /** Load messages from Datastore. */
@@ -92,9 +97,9 @@ public class DataServlet extends HttpServlet {
 
     ArrayList<Message> messages = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-      String sender = (String) entity.getProperty("sender");
-      String content = (String) entity.getProperty("content");
-      String email = (String) entity.getProperty("email");
+      String sender = (String) entity.getProperty(SENDER_PROPERTY);
+      String content = (String) entity.getProperty(CONTENT_PROPERTY);
+      String email = (String) entity.getProperty(EMAIL_PROPERTY);
       messages.add(new Message(sender, content, email));
     }
     return messages;

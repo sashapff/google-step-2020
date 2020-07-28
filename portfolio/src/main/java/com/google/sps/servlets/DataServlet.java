@@ -27,6 +27,8 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 /** Servlet that returns users messages content that they send. */
 @WebServlet("/data")
@@ -37,19 +39,25 @@ public class DataServlet extends HttpServlet {
   private class Message {
     final String sender;
     final String content;
+    final String email;
 
-    Message(String sender, String content) {
+    Message(String sender, String content, String email) {
       this.sender = sender;
       this.content = content;
+      this.email = email;
     }
   }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    UserService userService = UserServiceFactory.getUserService();
+    
     final String sender = request.getParameter("message-sender");
     final String content = request.getParameter("message-content");
+    final String email = userService.getCurrentUser().getEmail();
     final long timestamp = System.currentTimeMillis();
-    putMessage(sender, content, timestamp);
+
+    putMessage(sender, content, email, timestamp);
 
     response.sendRedirect("/index.html");
   }
@@ -64,10 +72,11 @@ public class DataServlet extends HttpServlet {
   }
 
   /** Create new message and put it to Datastore. */
-  private void putMessage(String sender, String content, long timestamp) {
+  private void putMessage(String sender, String content, String email, long timestamp) {
     Entity messageEntity = new Entity("Message");
     messageEntity.setProperty("sender", sender);
     messageEntity.setProperty("content", content);
+    messageEntity.setProperty("email", email);
     messageEntity.setProperty("timestamp", timestamp);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -85,7 +94,8 @@ public class DataServlet extends HttpServlet {
     for (Entity entity : results.asIterable()) {
       String sender = (String) entity.getProperty("sender");
       String content = (String) entity.getProperty("content");
-      messages.add(new Message(sender, content));
+      String email = (String) entity.getProperty("email");
+      messages.add(new Message(sender, content, email));
     }
     return messages;
   }

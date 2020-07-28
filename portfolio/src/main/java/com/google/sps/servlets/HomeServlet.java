@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns links to login or logout and to the main page. */
+/** Servlet that returns form to new message or link to login. */
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
 
@@ -36,12 +36,20 @@ public class HomeServlet extends HttpServlet {
 
     if (!userService.isUserLoggedIn()) {
       String loginUrl = userService.createLoginURL("/home");
+      out.println("<h3>Please login to send messages</h3>");
       out.println("<p><a href=\"" + loginUrl + "\">Login</a></p>");
     } else {
-      String logoutUrl = userService.createLogoutURL("/home");
-      out.println("<p><a href=\"" + logoutUrl + "\">Logout</a></p>");
+      newMessagesForm(out);
     }
+  }
 
-    out.println("<p><a href=\"/index.html\">Main page</a></p>");
+  /** Create form for messages. */
+  private void newMessagesForm(PrintWriter out) {
+    out.println("<p>Leave a comment about me:</>");
+    out.println("<form action=\"/data\" method=\"POST\">");
+    out.println("<input type=\"text\" name=\"message-sender\" placeholder=\"Your name or nick\" required><br><br>");
+    out.println("<input type=\"text\" name=\"message-content\" placeholder=\"Message\" required><br><br>");
+    out.println("<input type=\"submit\" value=\"Send\">");
+    out.println("</form>");
   }
 }

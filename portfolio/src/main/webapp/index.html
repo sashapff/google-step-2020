@@ -9,7 +9,6 @@
   </head>
   <body onload="start()">
     <h1>Alexandra Ivanova</h1>
-    <h2><a href="/home">Log in | Log out</a></h2>
     <div>
       <div id="photo">
         <img src="images/me.jpg" alt="My photo" id="my-photo">
@@ -45,15 +44,10 @@
         <h3>Reviews of my friends</h3>
         <p>What my friends think about me:</p>
         <ul>
-          <div id="messages-container"></div>
+          <div id="messages-container">Loading..</div>
         </ul>
         <h3>Form to messages</h3>
-        <p>Leave a comment about me:</>
-        <form action="/data" method="POST">
-          <input type="text" name="message-sender" placeholder="Your name or nick" required><br><br>
-          <input type="text" name="message-content" placeholder="Message" required><br><br>
-          <input type="submit" value="Send">
-        </form>
+        <p><a href="/home">Send message</a></p>
       </div>
     </div>
   </body>

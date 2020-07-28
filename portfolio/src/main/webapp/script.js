@@ -12,3 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/** Starts all function to onload. */
+function start() {
+  getMessages();
+}
+
+/** Fetches messages from the servers and adds them to the DOM. */
+function getMessages() {
+  fetch('/data').then(response => response.json()).then((messages) => {
+    // messages is an object, not a string, so we have to
+    // reference its fields to create HTML content
+    const messagesElement = document.getElementById('messages-container');
+    messagesElement.innerHTML = '';
+    messages.forEach((message) => messagesElement.appendChild(
+      createListElement(message.sender + " (" + message.email + ")" + ": " + message.content)));
+  });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}

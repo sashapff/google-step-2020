@@ -27,13 +27,15 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns users eyes colors. */
 @WebServlet("/color-data")
 public class ColorDataServlet extends HttpServlet {
-  /** Nubmer of each eyes color. */
+  private final Gson gson = new Gson();
+
+  /** Number of each eyes color. */
   private Map<String, Integer> colorVotes = new HashMap<>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
-    Gson gson = new Gson();
+    
     String json = gson.toJson(colorVotes);
     response.getWriter().println(json);
   }

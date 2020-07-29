@@ -31,8 +31,8 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
 /** Servlet that returns users messages content that they send. */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+@WebServlet("/messages-data")
+public class MessagesDataServlet extends HttpServlet {
   private final Gson gson = new Gson();
 
   /** Store message structure. */

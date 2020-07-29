@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Alexandra Ivanova</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="script.js"></script>
     <link rel="icon" type="image/img" href="/images/me.jpg"/>
   </head>
@@ -48,6 +49,22 @@
         </ul>
         <h3>Form to messages</h3>
         <p><a href="/home">Send message</a></p>
+        <h3>Eyes color</h3>
+        <p>Choose your eyes color and then see what's the most popular:</p>
+        <form action="/color-data" method="POST">
+          <input type="radio" id="green" value="green" name="color">
+          <label for="green">Green</label><br>
+          <input type="radio" id="blue" value="blue" name="color">
+          <label for="blue">Blue</label><br>
+          <input type="radio" id="brown" value="brown" name="color">
+          <label for="brown">Brown</label><br>
+          <input type="radio" id="gray" value="gray" name="color">
+          <label for="gray">Gray</label><br>
+          <input type="radio" id="other" value="other" name="color">
+          <label for="other">Other</label><br>
+          <button>Submit</button>
+        </form>
+        <div id="chart-container"></div>
       </div>
     </div>
   </body>

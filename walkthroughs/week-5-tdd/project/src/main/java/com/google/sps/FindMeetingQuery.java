@@ -15,9 +15,62 @@
 package com.google.sps;
 
 import java.util.Collection;
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.TreeSet;
+import java.util.Arrays;
 
 public final class FindMeetingQuery {
+  private Collection<Event> events;
+  private MeetingRequest request;
+
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    throw new UnsupportedOperationException("TODO: Implement this method.");
+    this.events = events;
+    this.request = request;
+
+    return getSuited(getUnsuited());
+  }
+
+  /** Returns whether some event and request event has the same attendees. */
+  private boolean hasCommonAttendees(Event event) {
+    for (String attendee : event.getAttendees()) {
+      if (request.getAttendees().contains(attendee)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /** Returns time ranges when the meeting can't be. */
+  private Collection<TimeRange> getUnsuited() {
+    Collection<TimeRange> unsuited = new TreeSet<>(TimeRange.ORDER_BY_START);
+    final int requestEventDuration = (int) request.getDuration();
+    for (Event event : events) {
+      if (hasCommonAttendees(event)) {
+        final TimeRange eventTimeRange = event.getWhen();
+        unsuited.add(TimeRange.fromStartDuration(eventTimeRange.start(), eventTimeRange.duration()));
+      }
+    }
+    if (requestEventDuration > TimeRange.MINUTES_A_DAY) {
+      unsuited.add(TimeRange.WHOLE_DAY);
+    }
+    return unsuited;
+  }
+
+  /** Returns time ranges when the meeting can be. */
+  private Collection<TimeRange> getSuited(Collection<TimeRange> unsuited) {
+    Collection<TimeRange> suited = new ArrayList<>();
+    int lastEnd = 0;
+    for (TimeRange timeRange : unsuited) {
+      final int start = timeRange.start();
+      if (start - lastEnd >= request.getDuration()) {
+        suited.add(TimeRange.fromStartEnd(lastEnd, start, false));
+      }
+      lastEnd = Math.max(timeRange.end(), lastEnd);
+    } 
+    if (lastEnd < TimeRange.MINUTES_A_DAY) {
+      suited.add(TimeRange.fromStartEnd(lastEnd, TimeRange.MINUTES_A_DAY, false));
+    }
+    return suited;
   }
 }

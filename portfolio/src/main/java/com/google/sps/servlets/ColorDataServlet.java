@@ -43,7 +43,7 @@ public class ColorDataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String color = request.getParameter("color");
-    int currentVotes = colorVotes.containsKey(color) ? colorVotes.get(color) : 0;
+    int currentVotes = colorVotes.getOrDefault(color, 0);
     colorVotes.put(color, currentVotes + 1);
 
     response.sendRedirect("/index.html");

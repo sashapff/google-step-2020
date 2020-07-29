@@ -30,7 +30,7 @@ public class ColorDataServlet extends HttpServlet {
   private final Gson gson = new Gson();
 
   /** Number of each eyes color. */
-  private Map<String, Integer> colorVotes = new HashMap<>();
+  private final Map<String, Integer> colorVotes = new HashMap<>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

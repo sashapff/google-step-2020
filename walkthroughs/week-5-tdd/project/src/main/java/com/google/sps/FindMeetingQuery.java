@@ -59,7 +59,7 @@ public final class FindMeetingQuery {
     return end - start >= request.getDuration();
   }
 
-  /** Returns time ranges when the meeting can be. */
+  /** Takes unsuited time ranges sorted by start and returns time ranges when the meeting can be. */
   private Collection<TimeRange> getSuited(Collection<TimeRange> unsuited) {
     Collection<TimeRange> suited = new ArrayList<>();
     int lastEnd = 0;

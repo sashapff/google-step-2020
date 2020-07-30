@@ -33,8 +33,9 @@ public final class FindMeetingQuery {
 
   /** Returns whether some event and request event have at least one attendee in common. */
   private boolean hasCommonAttendee(Event event) {
+    final Collection<String> requestAttendees = request.getAttendees();
     for (String attendee : event.getAttendees()) {
-      if (request.getAttendees().contains(attendee)) {
+      if (requestAttendees.contains(attendee)) {
         return true;
       }
     }

@@ -51,10 +51,12 @@ public final class FindMeetingQuery {
         unsuited.add(event.getWhen());
       }
     }
-    if (requestEventDuration > TimeRange.MINUTES_A_DAY) {
-      unsuited.add(TimeRange.WHOLE_DAY);
-    }
     return unsuited;
+  }
+
+  /** Returns whether time range duration more at least request duration. */
+  private boolean checkDuration(int start, int end) {
+    return end - start >= request.getDuration();
   }
 
   /** Returns time ranges when the meeting can be. */
@@ -63,12 +65,13 @@ public final class FindMeetingQuery {
     int lastEnd = 0;
     for (TimeRange timeRange : unsuited) {
       final int start = timeRange.start();
-      if (start - lastEnd >= request.getDuration()) {
+      if (checkDuration(lastEnd, start)) {
         suited.add(TimeRange.fromStartEnd(lastEnd, start, false));
       }
       lastEnd = Math.max(timeRange.end(), lastEnd);
     } 
-    if (lastEnd < TimeRange.MINUTES_A_DAY) {
+    // Time range between the end of last unsuited time range and the end of the day can be suited.
+    if (checkDuration(lastEnd, TimeRange.MINUTES_A_DAY)) {
       suited.add(TimeRange.fromStartEnd(lastEnd, TimeRange.MINUTES_A_DAY, false));
     }
     return suited;

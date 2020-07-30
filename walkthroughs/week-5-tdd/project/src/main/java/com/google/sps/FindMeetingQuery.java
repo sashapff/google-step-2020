@@ -31,8 +31,8 @@ public final class FindMeetingQuery {
     return getSuited(getUnsuited());
   }
 
-  /** Returns whether some event and request event has the same attendees. */
-  private boolean hasCommonAttendees(Event event) {
+  /** Returns whether some event and request event have at least one attendee in common. */
+  private boolean hasCommonAttendee(Event event) {
     for (String attendee : event.getAttendees()) {
       if (request.getAttendees().contains(attendee)) {
         return true;
@@ -46,7 +46,7 @@ public final class FindMeetingQuery {
     Collection<TimeRange> unsuited = new TreeSet<>(TimeRange.ORDER_BY_START);
     final int requestEventDuration = (int) request.getDuration();
     for (Event event : events) {
-      if (hasCommonAttendees(event)) {
+      if (hasCommonAttendee(event)) {
         final TimeRange eventTimeRange = event.getWhen();
         unsuited.add(TimeRange.fromStartDuration(eventTimeRange.start(), eventTimeRange.duration()));
       }

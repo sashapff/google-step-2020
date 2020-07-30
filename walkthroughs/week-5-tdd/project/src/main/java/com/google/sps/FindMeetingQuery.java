@@ -64,7 +64,10 @@ public final class FindMeetingQuery {
     return false;
   };
 
-  /** Returns time ranges sorted by start when the meeting can't be. */
+  /** 
+   * Takes the function that checks whether events have common attendee and 
+   * returns time ranges sorted by start when the meeting can't be. 
+   */
   private Collection<TimeRange> getUnsuited(Function<Event, Boolean> checkCommonAttendee) {
     Collection<TimeRange> unsuited = new TreeSet<>(TimeRange.ORDER_BY_START);
     final long requestEventDuration = request.getDuration();

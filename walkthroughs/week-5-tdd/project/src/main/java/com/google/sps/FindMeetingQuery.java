@@ -48,8 +48,7 @@ public final class FindMeetingQuery {
     final long requestEventDuration = request.getDuration();
     for (Event event : events) {
       if (hasCommonAttendee(event)) {
-        final TimeRange eventTimeRange = event.getWhen();
-        unsuited.add(TimeRange.fromStartDuration(eventTimeRange.start(), eventTimeRange.duration()));
+        unsuited.add(event.getWhen());
       }
     }
     if (requestEventDuration > TimeRange.MINUTES_A_DAY) {

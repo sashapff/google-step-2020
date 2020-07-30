@@ -42,7 +42,7 @@ public final class FindMeetingQuery {
     return false;
   }
 
-  /** Returns time ranges when the meeting can't be. */
+  /** Returns time ranges sorted by start when the meeting can't be. */
   private Collection<TimeRange> getUnsuited() {
     Collection<TimeRange> unsuited = new TreeSet<>(TimeRange.ORDER_BY_START);
     final int requestEventDuration = (int) request.getDuration();

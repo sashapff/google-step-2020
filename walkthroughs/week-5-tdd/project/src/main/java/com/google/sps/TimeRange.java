@@ -25,7 +25,7 @@ public final class TimeRange {
   public static final int END_OF_DAY = getTimeInMinutes(23, 59);
 
   public static final TimeRange WHOLE_DAY = new TimeRange(0, 24 * 60);
-  public static int MINUTES_A_DAY = 24 * 60;
+  public static final int MINUTES_A_DAY = 24 * 60;
 
   /**
    * A comparator for sorting ranges by their start time in ascending order.

@@ -19,6 +19,7 @@ import java.util.Set;
 import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.Arrays;
+import java.util.function.Function;
 
 public final class FindMeetingQuery {
   private Collection<Event> events;
@@ -28,11 +29,17 @@ public final class FindMeetingQuery {
     this.events = events;
     this.request = request;
 
-    return getSuited(getUnsuited());
+    Collection<TimeRange> mandatoryAndOptional = 
+      getSuited(getUnsuited(hasMandatoryOptionalCommonAttendee));
+    if (!mandatoryAndOptional.isEmpty()) {
+      return mandatoryAndOptional;
+    }
+    
+    return getSuited(getUnsuited(hasMandatoryCommonAttendee));
   }
 
-  /** Returns whether some event and request event have at least one attendee in common. */
-  private boolean hasCommonAttendee(Event event) {
+  /** Returns whether some event and request event have at least one mandatory attendee in common. */
+  Function<Event, Boolean> hasMandatoryCommonAttendee = (Event event) -> {
     final Collection<String> requestAttendees = request.getAttendees();
     for (String attendee : event.getAttendees()) {
       if (requestAttendees.contains(attendee)) {
@@ -40,14 +47,29 @@ public final class FindMeetingQuery {
       }
     }
     return false;
-  }
+  };
+
+   /** 
+    * Returns whether some event and request event have at least 
+    * one mandatory or optional attendee in common. 
+    */
+  Function<Event, Boolean> hasMandatoryOptionalCommonAttendee = (Event event) -> {
+    final Collection<String> requestAttendees = request.getAttendees();
+    final Collection<String> requestOptionalAttendees = request.getOptionalAttendees();
+    for (String attendee : event.getAttendees()) {
+      if (requestAttendees.contains(attendee) || requestOptionalAttendees.contains(attendee)) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   /** Returns time ranges sorted by start when the meeting can't be. */
-  private Collection<TimeRange> getUnsuited() {
+  private Collection<TimeRange> getUnsuited(Function<Event, Boolean> checkCommonAttendee) {
     Collection<TimeRange> unsuited = new TreeSet<>(TimeRange.ORDER_BY_START);
     final long requestEventDuration = request.getDuration();
     for (Event event : events) {
-      if (hasCommonAttendee(event)) {
+      if (checkCommonAttendee.apply(event)) {
         unsuited.add(event.getWhen());
       }
     }

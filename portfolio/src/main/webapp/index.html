@@ -8,63 +8,75 @@
     <script src="script.js"></script>
     <link rel="icon" type="image/img" href="/images/me.jpg"/>
   </head>
-  <body onload="start()">
-    <h1>Alexandra Ivanova</h1>
-    <div>
-      <div id="photo">
-        <img src="images/me.jpg" alt="My photo" id="my-photo">
-      </div>
-      <div id="content">
-        <h3>My programming experience</h3>
-        <p>I'm a second-year student from Saint Petersburg, Russia. There are my projects:</p>
-        <ul>
-          <li>Some mini-games in one Android App. 
-            <a href="https://play.google.com/store/apps/details?id=ru.miniteamsminigames.minigames">Click to download.</a>
-          </li>
-          <li>Vector with small-object and copy-on-write optimizations.
-            <a href="https://github.com/sashapff/vector">Click to see code.</a>
-          </li>
-        </ul>
-        <h3>Facts about me</h3>
-        <p>These are some fun facts you need to know about me. I like to:</p>
-        <ul>
-          <li>watch videos on Tik-Tok</li>
-          <li>cook cupcakes</li>
-          <li>drive a car</li>
-          <li>listen to hip-hop music</li>
-        </ul>
-        <h3>Me on social networks</h3>
-        <p>Follow the links and subscribe:</p>
-        <ul>
-          <li><a href="https://github.com/sashapff">Github</a></li>
-          <li><a href="https://instagram.com/sasha.pff">Instagram</a></li>
-          <li><a href="https://t.me/sasha_pff">Telegram</a></li>
-          <li><a href="https://t.me/pff_thoughts">Telegram Channel</a> (just in Russian)</li>
-          <li><a href="https://music.apple.com/ru/playlist/pff-music/pl.u-qxylK2au2B8G0jr?l=en">Apple Music</a> (my playlist)</li>
-        </ul>
-        <h3>Reviews of my friends</h3>
-        <p>What my friends think about me:</p>
-        <ul>
-          <div id="messages-container">Loading..</div>
-        </ul>
-        <h3>Form to messages</h3>
-        <p><a href="/home">Send message</a></p>
-        <h3>Eyes color</h3>
-        <p>Choose your eyes color and then see what's the most popular:</p>
-        <form action="/color-data" method="POST">
-          <input type="radio" id="green" value="green" name="color">
-          <label for="green">Green</label><br>
-          <input type="radio" id="blue" value="blue" name="color">
-          <label for="blue">Blue</label><br>
-          <input type="radio" id="brown" value="brown" name="color">
-          <label for="brown">Brown</label><br>
-          <input type="radio" id="gray" value="gray" name="color">
-          <label for="gray">Gray</label><br>
-          <input type="radio" id="other" value="other" name="color">
-          <label for="other">Other</label><br>
-          <button>Submit</button>
-        </form>
-        <div id="chart-container"></div>
+  <body onload="start()" class=background>
+    <div id="header">
+      <h1>Alexandra Ivanova</h1>
+    </div>
+    <div id="content">
+      <div>
+        <section>
+          <h3>My programming experience</h3>
+          <p>I'm a second-year student from Saint Petersburg, Russia. There are my projects:</p>
+          <ul>
+            <li>Some mini-games in one Android App. 
+              <a href="https://play.google.com/store/apps/details?id=ru.miniteamsminigames.minigames">Click to download.</a>
+            </li>
+            <li>Vector with small-object and copy-on-write optimizations.
+              <a href="https://github.com/sashapff/vector">Click to see code.</a>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Facts about me</h3>
+          <p>These are some fun facts you need to know about me. I like to:</p>
+          <ul>
+            <li>watch videos on Tik-Tok</li>
+            <li>cook cupcakes</li>
+            <li>drive a car</li>
+            <li>listen to hip-hop music</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Me on social networks</h3>
+          <p>Follow the links and subscribe:</p>
+          <ul>
+            <li><a href="https://github.com/sashapff">Github</a></li>
+            <li><a href="https://instagram.com/sasha.pff">Instagram</a></li>
+            <li><a href="https://t.me/sasha_pff">Telegram</a></li>
+            <li><a href="https://t.me/pff_thoughts">Telegram Channel</a> (just in Russian)</li>
+            <li><a href="https://music.apple.com/ru/playlist/pff-music/pl.u-qxylK2au2B8G0jr?l=en">Apple Music</a> (my playlist)</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Reviews of my friends</h3>
+          <p>What my friends think about me:</p>
+          <ul>
+            <div id="messages-container">Loading..</div>
+          </ul>
+        </section>
+        <section>
+          <h3>Form for messages</h3>
+          <p>You can leave a comment about me and everyone will see it:<p> 
+          <buttom class="button"><a href="/home">Send message</a></button>
+        </section>
+        <section>
+          <h3>Eyes color</h3>
+          <p>Choose your eyes color and then see what's the most popular:</p>
+          <form action="/color-data" method="POST">
+            <input type="radio" id="green" value="green" name="color">
+            <label for="green">Green</label><br>
+            <input type="radio" id="blue" value="blue" name="color">
+            <label for="blue">Blue</label><br>
+            <input type="radio" id="brown" value="brown" name="color">
+            <label for="brown">Brown</label><br>
+            <input type="radio" id="gray" value="gray" name="color">
+            <label for="gray">Gray</label><br>
+            <input type="radio" id="other" value="other" name="color">
+            <label for="other">Other</label><br>
+            <button class="button">Submit</button>
+          </form>
+          <div id="chart-container"></div>
+        </section>
       </div>
     </div>
   </body>

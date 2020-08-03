@@ -306,7 +306,7 @@ public final class FindMeetingQueryTest {
 
   @Test
   public void notIgnoreOptionalAttendees() {
-    // Have each person have different events. Optional attendee has a meeting for all day.
+    // Have each person have different events. Optional attendee has a meeting in the middle of the day.
     // We should see two options for all attendees.
     //
     // Events  :       |--A--|     |--B--|
@@ -336,8 +336,8 @@ public final class FindMeetingQueryTest {
 
   @Test
   public void ignoresOptionalAttendesNotEnoughtDuration() {
-    // Have one mandtory person, but make it so that there is just enough room at one point in the day to
-    // have the meeting. Have one optional person. We should see ine option for mandatory attendee.
+    // Have one mandatory person, but make it so that there is just enough room at one point in the day to
+    // have the meeting. Have one optional person. We should see one option for mandatory attendee.
     //
     // Events  : |--A--|     |----A----|
     //                 |-B-|                  B - optional attendee

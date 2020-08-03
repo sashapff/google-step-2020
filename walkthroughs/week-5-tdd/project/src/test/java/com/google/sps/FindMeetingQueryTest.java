@@ -364,8 +364,8 @@ public final class FindMeetingQueryTest {
 
   @Test
   public void onlyOptionalAttendees() {
-    // Have only optional persons that have different events. We should see three options because each person has
-    // split the restricted times. 
+    // Have only optional persons that have different events. We should see three options because all mandatory
+    // and optional attendees can attend it.
     //
     // Events  :       |--A--|     |--B--|            A, B - optional attendees
     // Day     : |-----------------------------|
@@ -392,7 +392,8 @@ public final class FindMeetingQueryTest {
   @Test
   public void onlyOptionalAttendeesNoOptions() {
     // Have only optional persons that have different events. We should see option with whole day
-    // because all mandatory attendees can attend it.
+    // because all mandatory attendees can attend it and we don't have time ranges when all optional
+    // can attend the meeting.
     //
     // Events  : |--------A--------|                  A, B - optional attendees
     //                       |---------B-------|

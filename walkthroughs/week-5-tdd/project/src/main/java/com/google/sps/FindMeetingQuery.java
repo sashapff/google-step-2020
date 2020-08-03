@@ -39,7 +39,7 @@ public final class FindMeetingQuery {
   }
 
   /** Returns whether some event and request event have at least one mandatory attendee in common. */
-  Function<Event, Boolean> hasMandatoryCommonAttendee = (Event event) -> {
+  private Function<Event, Boolean> hasMandatoryCommonAttendee = (Event event) -> {
     final Collection<String> requestAttendees = request.getAttendees();
     for (String attendee : event.getAttendees()) {
       if (requestAttendees.contains(attendee)) {
@@ -53,7 +53,7 @@ public final class FindMeetingQuery {
     * Returns whether some event and request event have at least 
     * one mandatory or optional attendee in common. 
     */
-  Function<Event, Boolean> hasMandatoryOptionalCommonAttendee = (Event event) -> {
+  private Function<Event, Boolean> hasMandatoryOptionalCommonAttendee = (Event event) -> {
     final Collection<String> requestAttendees = request.getAttendees();
     final Collection<String> requestOptionalAttendees = request.getOptionalAttendees();
     for (String attendee : event.getAttendees()) {

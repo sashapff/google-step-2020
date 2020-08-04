@@ -47,7 +47,7 @@
             <li><a href="https://music.apple.com/ru/playlist/pff-music/pl.u-qxylK2au2B8G0jr?l=en">Apple Music</a> (my playlist)</li>
           </ul>
         </section>
-        <section>
+        <section id="messages">
           <h3>Reviews of my friends</h3>
           <p>What my friends think about me:</p>
           <ul>
@@ -56,14 +56,16 @@
         </section>
         <section>
           <h3>Form for messages</h3>
-          <p>You can leave a comment about me and everyone will see it:<p> 
-          <buttom class="button"><a href="/home">Send message</a></button>
+          <p>You can leave a comment about me and everyone will see it:<p>
+          <form method="get" action="/home">
+            <button class="button" type="submit">Send message</button>
+          </form>
         </section>
-        <section>
+        <section id="eyes-color">
           <h3>Eyes color</h3>
           <p>Choose your eyes color and then see what's the most popular:</p>
           <form action="/color-data" method="POST">
-            <input type="radio" id="green" value="green" name="color">
+            <input type="radio" id="green" value="green" name="color" checked>
             <label for="green">Green</label><br>
             <input type="radio" id="blue" value="blue" name="color">
             <label for="blue">Blue</label><br>

@@ -64,7 +64,7 @@ public class MessagesDataServlet extends HttpServlet {
 
     putMessage(sender, content, email, timestamp);
 
-    response.sendRedirect("/index.html");
+    response.sendRedirect("/index.html#messages");
   }
 
   /** Create new message and put it to Datastore. */

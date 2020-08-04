@@ -4,10 +4,11 @@
   --text-color: rgb(256, 256, 256);
   --head-color: rgb(60, 60, 80);
   --button-color: rgb(60, 60, 80);
+  --text-font-family: Copperplate, Copperplate Gothic Light, fantasy;
 }
 
 html {
-  font-family: Copperplate, Copperplate Gothic Light, fantasy;
+  font-family: var(--text-font-family);
   color: var(--text-color);
   font-size: 250%;
 }
@@ -36,17 +37,17 @@ a {
 }
 
 section {
-  padding-bottom: 2rem;
-  padding-top: 2rem;
+  padding-bottom: 4rem;
+  padding-top: 0rem;
 }
 
 .button {
-  background-color: var(--button-color); /* Green */
+  background-color: var(--button-color);
   border: none;
   color: var(--text-color);
   padding: 15px 32px;
   text-align: center;
-  font-family: Copperplate, Copperplate Gothic Light, fantasy;
+  font-family: var(--text-font-family);
   display: inline-block;
   font-size: 100%;
   margin: 4px 2px;

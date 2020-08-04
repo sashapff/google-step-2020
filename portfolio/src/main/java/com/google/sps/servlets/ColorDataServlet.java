@@ -46,6 +46,6 @@ public class ColorDataServlet extends HttpServlet {
     int currentVotes = colorVotes.getOrDefault(color, 0);
     colorVotes.put(color, currentVotes + 1);
 
-    response.sendRedirect("/index.html");
+    response.sendRedirect("/index.html#eyes-color");
   }
 }

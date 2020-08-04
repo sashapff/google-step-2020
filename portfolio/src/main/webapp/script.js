@@ -50,9 +50,9 @@ function drawChart() {
     });
 
     const options = {
-      'title': 'Eyes Colors',
       'width':500,
-      'height':400
+      'height':500,
+      'backgroundColor':'transparent'
     };
 
     const chart = new google.visualization.PieChart(

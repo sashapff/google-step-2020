@@ -46,7 +46,7 @@ public class HomeServlet extends HttpServlet {
   /** Create form for messages. */
   private void newMessagesForm(PrintWriter out) {
     out.println("<p>Leave a comment about me:</>");
-    out.println("<form action=\"/data\" method=\"POST\">");
+    out.println("<form action=\"/messages-data\" method=\"POST\">");
     out.println("<input type=\"text\" name=\"message-sender\" placeholder=\"Your name or nick\" required><br><br>");
     out.println("<input type=\"text\" name=\"message-content\" placeholder=\"Message\" required><br><br>");
     out.println("<input type=\"submit\" value=\"Send\">");

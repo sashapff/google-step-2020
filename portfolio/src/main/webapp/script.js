@@ -60,3 +60,13 @@ function drawChart() {
     chart.draw(data, options);
   });
 }
+
+/** Opens an animated side navigation. */
+function openNavigation() {
+  document.getElementById("nav").style.width = "15%";
+}
+
+/** Closes an animated side navigation. */
+function closeNavigation() {
+  document.getElementById("nav").style.width = "0";
+}

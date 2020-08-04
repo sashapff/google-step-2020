@@ -4,6 +4,8 @@
   --text-color: rgb(256, 256, 256);
   --head-color: rgb(60, 60, 80);
   --button-color: rgb(60, 60, 80);
+  --nav-background-color: rgb(40, 40, 50);
+  --hover-color: rgb(180, 180, 200);
   --text-font-family: Copperplate, Copperplate Gothic Light, fantasy;
 }
 
@@ -24,7 +26,7 @@ html {
 }
 
 #content {
-  width: 60%;
+  width: 50%;
   float: left;
 }
 
@@ -38,7 +40,6 @@ a {
 
 section {
   padding-bottom: 4rem;
-  padding-top: 0rem;
 }
 
 .button {
@@ -52,4 +53,54 @@ section {
   font-size: 100%;
   margin: 4px 2px;
   cursor: pointer;
+}
+
+#float {
+  float: right;
+}
+
+#side-navigation {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--button-color);
+  position: fixed;
+  right: 1rem;
+  top: 0;
+}
+
+.navigation {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: var(--nav-background-color);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.navigation a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: var(--text-color);
+  display: block;
+  transition: 0.3s;
+}
+
+.navigation a:hover {
+  color: var(--hover-color);
+}
+
+.navigation .close {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  font-size: 1.5rem;
+}
+
+#page {
+  transition: 0.5s;
 }

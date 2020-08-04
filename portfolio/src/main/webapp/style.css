@@ -1,28 +1,54 @@
 :root {
-  --background-color: rgb(235, 235, 250);
-  --link-color: rgb(100, 100, 110);
-  --text-color: rgb(60, 60, 80);
-  --button-color: rgb(220, 220, 235);
-  --border-color: rgb(80, 80, 100);
+  --background-color: rgb(138, 154, 172);
+  --link-color: rgb(230, 230, 230);
+  --text-color: rgb(256, 256, 256);
+  --head-color: rgb(60, 60, 80);
+  --button-color: rgb(60, 60, 80);
 }
 
 html {
-  font-family: Georgia, Helvetica, sans-serif;
-  background-color: var(--background-color);
+  font-family: Copperplate, Copperplate Gothic Light, fantasy;
   color: var(--text-color);
+  font-size: 250%;
 }
 
-#my-photo {
-  width: 50%;
-  float: left;
+.background {
+  background-color: var(--background-color);
+  background-image: url("images/me.jpg");
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: 25% 25%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #content {
-  margin-left: 2%;
-  width: 48%;
+  width: 60%;
   float: left;
 }
 
 a {
   color: var(--link-color);
+}
+
+#header {
+  color: var(--head-color);
+}
+
+section {
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+.button {
+  background-color: var(--button-color); /* Green */
+  border: none;
+  color: var(--text-color);
+  padding: 15px 32px;
+  text-align: center;
+  font-family: Copperplate, Copperplate Gothic Light, fantasy;
+  display: inline-block;
+  font-size: 100%;
+  margin: 4px 2px;
+  cursor: pointer;
 }

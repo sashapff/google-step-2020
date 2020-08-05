@@ -17,7 +17,18 @@ google.charts.setOnLoadCallback(drawChart);
 
 /** Starts all function to onload. */
 function start() {
+  addClosableItems();
   getMessages();
+}
+
+/** Add onClick action to some elements. */
+function addClosableItems() {
+  let closable = document.getElementsByClassName("closable");
+  for (let i = 0; i < closable.length; i++) {
+    closable[i].onclick = function() {
+      closeNavigation();
+    };
+  }
 }
 
 /** Fetches messages from the servers and adds them to the DOM. */

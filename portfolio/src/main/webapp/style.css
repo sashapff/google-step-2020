@@ -94,7 +94,7 @@ section {
   color: var(--hover-color);
 }
 
-.navigation .close {
+.navigation #close {
   position: absolute;
   top: 0;
   right: 1rem;

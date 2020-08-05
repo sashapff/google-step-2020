@@ -9,16 +9,28 @@
     <link rel="icon" type="image/img" href="/images/me.jpg"/>
   </head>
   <body onload="start()" class=background>
-    <div id="header">
-      <h1>Alexandra Ivanova</h1>
+    <div id="nav" class="navigation">
+      <a href="javascript:void(0)" id="close" class="closable">&times;</a>
+      <a href="#experience" class="closable">Experience</a>
+      <a href="#facts" class="closable">Facts</a>
+      <a href="#contact" class="closable">Contact</a>
+      <a href="#messages" class="closable">Messages</a>
+      <a href="#form" class="closable">Form</a>
+      <a href="#eyes-color" class="closable">Poll</a>
     </div>
-    <div id="content">
-      <div>
-        <section>
+    <div id="float">
+      <span id="side-navigation" onclick="openNavigation()">&#9776;</span>
+    </div>
+    <div id="page">
+      <div id="header">
+        <h1>Alexandra Ivanova</h1>
+      </div>
+      <div id="content">
+        <section id="experience">
           <h3>My programming experience</h3>
           <p>I'm a second-year student from Saint Petersburg, Russia. There are my projects:</p>
           <ul>
-            <li>Some mini-games in one Android App. 
+            <li>Some mini-games in one Android App.
               <a href="https://play.google.com/store/apps/details?id=ru.miniteamsminigames.minigames">Click to download.</a>
             </li>
             <li>Vector with small-object and copy-on-write optimizations.
@@ -26,7 +38,7 @@
             </li>
           </ul>
         </section>
-        <section>
+        <section id="facts">
           <h3>Facts about me</h3>
           <p>These are some fun facts you need to know about me. I like to:</p>
           <ul>
@@ -36,7 +48,7 @@
             <li>listen to hip-hop music</li>
           </ul>
         </section>
-        <section>
+        <section id="contact">
           <h3>Me on social networks</h3>
           <p>Follow the links and subscribe:</p>
           <ul>
@@ -54,7 +66,7 @@
             <div id="messages-container">Loading..</div>
           </ul>
         </section>
-        <section>
+        <section id="form">
           <h3>Form for messages</h3>
           <p>You can leave a comment about me and everyone will see it:<p>
           <form method="get" action="/home">
